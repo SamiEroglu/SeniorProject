@@ -1,23 +1,37 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Redirect,
+} from 'react-router-dom';
 import Home from './Components/Page';
-import SignInSide from './Components/Sign/SignInSide';
+import Login from './Components/Sign/SignInSide';
+
+const isLoggedIn = false;
+
+// Eğer kullanıcı giriş yapmamışsa ana sayfaya yönlendirme yapılır
+const PrivateRoute = ({ component: Component, ...rest }) => {
+	// Burada gerçek kullanıcı bilgisi kontrol edilir
+	return (
+		<Route
+			render={(props) =>
+				isLoggedIn ? <Component {...props} /> : <Redirect to="/login" />
+			}
+		/>
+	);
+};
 
 function App() {
 	return (
-		<Router>
-			<div>
+		<div className="App">
+			<Router>
 				<Switch>
-					<Route path="/home">
-						<Home />
-					</Route>
-					<Route path="/login">
-						<SignInSide />
-					</Route>
+					<Route path="/login" component={Login} />
+					<PrivateRoute path="/" component={Home} />
 				</Switch>
-			</div>
-		</Router>
+			</Router>
+		</div>
 	);
 }
 
