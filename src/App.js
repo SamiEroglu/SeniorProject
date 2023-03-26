@@ -1,21 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import Home from './Components/Page';
 import SignInSide from './Components/Sign/SignInSide';
 
 function App() {
 	return (
 		<Router>
 			<div>
-				{/* <nav>
-					<ul>
-						<li>
-							<Link to="/login">Login</Link>
-						</li>
-					</ul>
-				</nav> */}
-
 				<Switch>
+					<Route path="/home">
+						<Home />
+					</Route>
 					<Route path="/login">
 						<SignInSide />
 					</Route>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-
+import { Link } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -100,14 +100,16 @@ export default function SignInSide() {
 									control={<Checkbox value="remember" color="primary" />}
 									label="Remember me"
 								/>
-								<Button
-									type="submit"
-									fullWidth
-									variant="contained"
-									sx={{ mt: 3, mb: 2 }}
-								>
-									Sign In
-								</Button>
+								<Link to="/home">
+									<Button
+										type="submit"
+										fullWidth
+										variant="contained"
+										sx={{ mt: 3, mb: 2 }}
+									>
+										Sign In
+									</Button>
+								</Link>
 							</Box>
 						</Box>
 					</Grid>
