@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 function Navbar() {
   const handleClickScroll = () => {
@@ -50,11 +49,12 @@ function Navbar() {
             right: "89%",
           }}
         >
-          <Link to="/home" style={{ textDecoration: "none" }}>
-            <li style={{ color: "white" }} onClick={scrollToTop}>
-              Ana Sayfa
-            </li>
-          </Link>
+          <li
+            style={{ color: "white", cursor: "pointer" }}
+            onClick={scrollToTop}
+          >
+            Ana Sayfa
+          </li>
         </ul>
       </div>
 

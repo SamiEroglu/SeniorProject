@@ -1,5 +1,19 @@
+import * as React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
@@ -14,76 +28,128 @@ function LoginPage() {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+  let navigate = useNavigate();
+  const routeChange = () => {
+    navigate("/home");
+  };
+  const theme = createTheme();
 
   return (
-    <div
-      style={{
-        backgroundColor: "#6B48FF",
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <form
-        style={{
-          backgroundColor: "#F8F8FF",
-          borderRadius: "10px",
-          padding: "50px",
-          minWidth: "400px",
-        }}
-      >
-        <h1
-          style={{
-            textAlign: "center",
-            marginBottom: "40px",
-            color: "#6B48FF",
+    <ThemeProvider theme={theme}>
+      <Grid container component="main" sx={{ height: "100vh" }}>
+        <CssBaseline />
+        <Grid
+          item
+          xs={false}
+          sm={4}
+          md={8}
+          sx={{
+            backgroundImage:
+              "url(https://source.unsplash.com/random/1920×1080/?city,night,1920x1080)",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
+        />
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={4}
+          component={Paper}
+          elevation={6}
+          square
+          style={{ backgroundColor: "#f7f0fe" }}
         >
-          Giriş Yap
-        </h1>
-        <div className="form-group">
-          <label style={{ color: "#6B48FF" }}>Email</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Email adresinizi girin"
-            value={email}
-            onChange={handleEmailChange}
-            required
-          />
-          {!isValidEmail && (
-            <div style={{ color: "red" }}>
-              Lütfen geçerli bir email adresi girin
-            </div>
-          )}
-        </div>
-        <div className="form-group">
-          <label style={{ color: "#6B48FF" }}>Şifre</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Şifrenizi girin"
-            value={password}
-            onChange={handlePasswordChange}
-            required
-          />
-        </div>
-        <Link to="/home">
-          <button
-            type="submit"
-            className="btn btn-primary"
-            style={{
-              backgroundColor: "#6B48FF",
-              borderColor: "#6B48FF",
-              marginTop: "30px",
+          <Box
+            sx={{
+              my: 8,
+              mx: 4,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
-            Giriş Yap
-          </button>
-        </Link>
-      </form>
-    </div>
+            <Avatar sx={{ m: 0.5, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h6">
+              Sign in
+            </Typography>
+            <Box
+              component="form"
+              noValidate
+              sx={{ mt: 1 }}
+              style={{ scale: "0.8" }}
+            >
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                type="email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+              {!isValidEmail && (
+                <div
+                  style={{
+                    color: "red",
+                    fontSize: "0.9vw",
+                    lineHeight: "0.2vw",
+                    paddingLeft: ".2vw",
+                    paddingTop: ".1vw",
+                  }}
+                >
+                  Lütfen geçerli bir email adresi girin
+                </div>
+              )}
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              />
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                onClick={routeChange}
+              >
+                Sign In
+              </Button>
+              <Grid container>
+                <Grid item xs>
+                  <Link href="#" variant="body2">
+                    Forgot password?
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link href="#" variant="body2">
+                    {"Don't have an account? Sign Up"}
+                  </Link>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+        </Grid>
+      </Grid>
+    </ThemeProvider>
   );
 }
 

@@ -1,0 +1,39 @@
+.chatbotbutton {
+  position: absolute;
+  top: 164%;
+  right: 8%;
+  color: white;
+  background-color: #6f48aa;
+  width: 5vw;
+  height: 5vh;
+  font-size: 0.8vw;
+  border: none;
+  border-radius: 1vw;
+}
+.chatlabel {
+  font-family: sans-serif;
+  font-size: 1vw;
+  position: absolute;
+  top: 161.7%;
+  right: 20%;
+}
+.submittedusername {
+  width: 19.8vw;
+  height: 43vh;
+  overflow-y: auto;
+  word-break: break-all;
+  margin-top: 1vw;
+}
+.submittedusername ul {
+  font-family: sans-serif;
+  font-size: 1vw;
+  padding-left: 1vw;
+
+  list-style: none;
+}
+.chatlabel input {
+  position: absolute;
+  top: 140%;
+  right: -100%;
+  width: 12.3vw;
+}

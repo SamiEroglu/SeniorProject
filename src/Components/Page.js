@@ -23,6 +23,7 @@ function Page() {
         }}
       ></div>
       <div
+        className="pagecontainer"
         style={{
           backgroundColor: "rgb(0,0,0,0.1)",
           display: "flex",
