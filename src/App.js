@@ -1,35 +1,14 @@
-import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login1 from "./Components/Sign/SignInSide";
 import Home from "./Components/Page";
-import Login from "./Components/Sign/SignInSide";
-
-const isLoggedIn = true;
-
-// Eğer kullanıcı giriş yapmamışsa ana sayfaya yönlendirme yapılır
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  // Burada gerçek kullanıcı bilgisi kontrol edilir
-  return (
-    <Route
-      render={(props) =>
-        isLoggedIn ? <Component {...props} /> : <Redirect to="/login" />
-      }
-    />
-  );
-};
-
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Router>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <PrivateRoute path="/" component={Home} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Login1 />}></Route>
+          <Route path="/home" element={<Home />}></Route>
+        </Routes>
       </Router>
     </div>
   );

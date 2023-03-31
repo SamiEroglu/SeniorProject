@@ -2,6 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Navbar() {
+  const handleClickScroll = () => {
+    const element = document.getElementById("section-1");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div
       style={{
@@ -11,6 +24,7 @@ function Navbar() {
         backgroundColor: "black",
         width: "100%",
         height: "10vh",
+        zIndex: "5",
       }}
     >
       <div
@@ -26,15 +40,20 @@ function Navbar() {
       >
         <ul
           style={{
+            width: "11%",
             backgroundColor: "#50a5d4",
             color: "white",
             fontFamily: "sans-serif",
             fontSize: "3vh",
             listStyleType: "none",
+            position: "absolute",
+            right: "89%",
           }}
         >
           <Link to="/home" style={{ textDecoration: "none" }}>
-            <li style={{ color: "white" }}>Ana Sayfa</li>
+            <li style={{ color: "white" }} onClick={scrollToTop}>
+              Ana Sayfa
+            </li>
           </Link>
         </ul>
       </div>
@@ -61,9 +80,11 @@ function Navbar() {
             paddingRight: "5vh",
           }}
         >
-          <li>Online Terapi</li>
-          <li>Kişisel Bilgilerim</li>
-          <li>Hesap Ayarları</li>
+          <li style={{ cursor: "pointer" }} onClick={handleClickScroll}>
+            Online Terapi
+          </li>
+          <li style={{ cursor: "pointer" }}>Kişisel Bilgilerim</li>
+          <li style={{ cursor: "pointer" }}>Hesap Ayarları</li>
         </ul>
       </div>
     </div>
