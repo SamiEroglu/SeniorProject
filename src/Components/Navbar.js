@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -32,7 +33,9 @@ function Navbar() {
             listStyleType: "none",
           }}
         >
-          <li>Ana Sayfa</li>
+          <Link to="/home" style={{ textDecoration: "none" }}>
+            <li style={{ color: "white" }}>Ana Sayfa</li>
+          </Link>
         </ul>
       </div>
 
