@@ -9,8 +9,9 @@ function VideoCall() {
       style={{
         width: "100%",
         height: "90vh",
-        background:
-          "linear-gradient(41deg, rgba(172,56,210,1) 0%, rgba(154,105,200,1) 16%, rgba(161,87,187,1) 36%, rgba(219,18,201,1) 57%, rgba(179,92,245,1) 74%, rgba(232,158,227,1) 100%, rgba(182,58,155,1) 100%)",
+        backgroundImage: "url(/videocallbg.jpg)",
+        backgroundSize: "100vw 90vh",
+        backgroundRepeat: "no-repeat",
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
@@ -25,14 +26,18 @@ function VideoCall() {
           width: "50%",
           height: "62.8%",
           border: "solid black 2px",
-          background: "#6f48aa",
+          backgroundImage: "url(/webcambg.png)",
+          backgroundSize: "35%",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "50%",
         }}
       />
       <div
+        className="chatboxcontainer"
         style={{
           border: "none",
           borderRadius: "1vw",
-          backgroundColor: "#f4f8fb",
+          backgroundColor: "rgba(244, 248, 251,0.8)",
           width: "20%",
           height: "60%",
         }}

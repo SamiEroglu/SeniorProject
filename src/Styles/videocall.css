@@ -1,0 +1,8 @@
+.chatboxcontainer {
+  opacity: 0.7;
+  transition: all 0.5s;
+}
+.chatboxcontainer:hover {
+  opacity: 1;
+  transition: all 0.5s;
+}
