@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const handleClickScroll = () => {
@@ -13,7 +14,10 @@ function Navbar() {
       behavior: "smooth",
     });
   };
-
+  let navigate = useNavigate();
+  const routeChange1 = () => {
+    navigate("/profile");
+  };
   return (
     <div
       style={{
@@ -74,7 +78,7 @@ function Navbar() {
             justifyContent: "end",
             color: "white",
             fontFamily: "sans-serif",
-            fontSize: "2vh",
+            fontSize: "2.5vh",
             listStyleType: "none",
             gap: "15vh",
             paddingRight: "5vh",
@@ -83,7 +87,9 @@ function Navbar() {
           <li style={{ cursor: "pointer" }} onClick={handleClickScroll}>
             Online Terapi
           </li>
-          <li style={{ cursor: "pointer" }}>Kişisel Bilgilerim</li>
+          <li style={{ cursor: "pointer" }} onClick={routeChange1}>
+            Kişisel Bilgilerim
+          </li>
           <li style={{ cursor: "pointer" }}>Hesap Ayarları</li>
         </ul>
       </div>
