@@ -12,20 +12,64 @@ export default function TestPage() {
     navigate("/test2");
   };
   return (
-    <div>
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+    >
       <Navbar />
-      <div>
+      <div
+        className="profilebgimgcontainer"
+        style={{
+          width: "100%",
+          height: "50vh",
+          position: "relative",
+        }}
+      >
+        <img
+          className="foregroundImg"
+          src="https://source.unsplash.com/random/1920x1080/?landscape"
+          alt=""
+        ></img>
+        <img
+          className="backgroundImg"
+          src="https://source.unsplash.com/random/1920x1080/?landscape"
+          alt=""
+        ></img>
+      </div>
+      <div
+        style={{
+          zIndex: "3",
+          position: "absolute",
+          top: "30%",
+          right: "20%",
+          border: "none",
+          borderRadius: "1.5vw",
+          width: "60%",
+          height: "55vh",
+          background: "white",
+          boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <button
           onClick={routeChange}
-          style={{ position: "absolute", top: "50%" }}
+          style={{ fontSize: "4vw" }}
+          className="bdtbutton"
         >
-          beckdepresyontesti
+          Beck Depresyon Testi
         </button>
         <button
           onClick={routeChange1}
-          style={{ position: "absolute", top: "50%" }}
+          style={{ fontSize: "4vw" }}
+          className="bdtbutton"
         >
-          gonogotest
+          Go/No-Go Testi
         </button>
       </div>
     </div>
