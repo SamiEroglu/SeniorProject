@@ -18,6 +18,9 @@ function Navbar() {
   const routeChange1 = () => {
     navigate("/profile");
   };
+  const routeChange2 = () => {
+    navigate("/test");
+  };
   return (
     <div
       style={{
@@ -87,10 +90,12 @@ function Navbar() {
           <li style={{ cursor: "pointer" }} onClick={handleClickScroll}>
             Online Terapi
           </li>
-          <li style={{ cursor: "pointer" }} onClick={routeChange1}>
-            Kişisel Bilgilerim
+          <li style={{ cursor: "pointer" }} onClick={routeChange2}>
+            Online Test
           </li>
-          <li style={{ cursor: "pointer" }}>Hesap Ayarları</li>
+          <li style={{ cursor: "pointer" }} onClick={routeChange1}>
+            Danışan Bilgileri
+          </li>
         </ul>
       </div>
     </div>

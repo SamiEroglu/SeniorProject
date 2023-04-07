@@ -3,7 +3,6 @@ import { useRef } from "react";
 import Navbar from "./Navbar";
 import "../Styles/page.css";
 import VideoCall from "./VideoCall";
-import TestChat from "./TestChat/TestChat";
 
 function Page() {
   const ref = useRef(null);
@@ -58,7 +57,6 @@ function Page() {
       <div ref={ref} id="section-1">
         <VideoCall />
       </div>
-      <TestChat />
     </div>
   );
 }
