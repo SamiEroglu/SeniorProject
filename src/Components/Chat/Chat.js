@@ -93,7 +93,8 @@ const Chat = () => {
                   position: "absolute",
                   top: "164.9%",
                   right: "13.45%",
-                  width: "12.3vw",
+                  width: "12.6vw",
+                  height: "1.2vw",
                 }}
               />
 

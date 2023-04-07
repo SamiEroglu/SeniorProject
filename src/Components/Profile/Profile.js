@@ -34,7 +34,7 @@ function Profile() {
         style={{
           zIndex: "3",
           position: "absolute",
-          top: "40%",
+          top: "30%",
           right: "20%",
           border: "none",
           borderRadius: "1.5vw",
