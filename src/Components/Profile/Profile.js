@@ -1,11 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import "../Profile/profile.css";
+import Navbar from "../Navbar";
 function Profile() {
-  let navigate = useNavigate();
-  const routeChange2 = () => {
-    navigate("/home");
-  };
   return (
     <div
       style={{
@@ -14,6 +10,7 @@ function Profile() {
         overflow: "hidden",
       }}
     >
+      <Navbar />
       <div
         className="profilebgimgcontainer"
         style={{
@@ -33,26 +30,6 @@ function Profile() {
           alt=""
         ></img>
       </div>
-
-      <li
-        style={{
-          color: "white",
-          cursor: "pointer",
-          width: "11%",
-          fontFamily: "sans-serif",
-          fontSize: "3vh",
-          listStyleType: "none",
-          position: "absolute",
-          top: "5%",
-          left: "3%",
-          textShadow:
-            "5px 5px 5px rgba(0,0,0,0.3), 0px -2px 3px rgba(255,255,255,0.3)",
-          zIndex: "3",
-        }}
-        onClick={routeChange2}
-      >
-        &lt;&nbsp; Ana Sayfa
-      </li>
       <div
         style={{
           zIndex: "3",

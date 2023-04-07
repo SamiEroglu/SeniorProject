@@ -35,14 +35,16 @@ function Page() {
           width: "70%",
           height: "80vh",
           fontFamily: "sans-serif",
-          fontSize: "10vh",
-          color: "white",
+          fontSize: "13vh",
+          color: "#e2d5fc",
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
+          textShadow:
+            "8px 5px 4px rgba(0,0,0,0.3), 0px -2px 3px rgba(255,255,255,0.3)",
         }}
       >
-        <span className="titlestyle">İŞİTME ENGELLİLER İÇİN ONLINE TERAPİ</span>
+        <span className="titlestyle">ENGELSİZ TERAPİ</span>
         <button
           className="morebuttonstyle"
           style={{

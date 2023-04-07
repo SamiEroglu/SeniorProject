@@ -21,6 +21,9 @@ function Navbar() {
   const routeChange2 = () => {
     navigate("/test");
   };
+  const routeChange3 = () => {
+    navigate("/home");
+  };
   return (
     <div
       style={{
@@ -38,7 +41,7 @@ function Navbar() {
           display: "flex",
           width: "11%",
           height: "10vh",
-          backgroundColor: "#50a5d4",
+          backgroundColor: "black",
           justifyContent: "start",
           alignItems: "center",
           textAlign: "center",
@@ -47,7 +50,7 @@ function Navbar() {
         <ul
           style={{
             width: "11%",
-            backgroundColor: "#50a5d4",
+            backgroundColor: "black",
             color: "white",
             fontFamily: "sans-serif",
             fontSize: "3vh",
@@ -57,16 +60,17 @@ function Navbar() {
           }}
         >
           <li
-            style={{ color: "white", cursor: "pointer" }}
-            onClick={scrollToTop}
+            style={{ color: "white", cursor: "pointer", fontWeight: "500" }}
+            onClick={routeChange3}
           >
-            Ana Sayfa
+            <li onClick={scrollToTop}>Ana Sayfa</li>
           </li>
         </ul>
       </div>
 
       <div
         style={{
+          backgroundColor: "#2c1444",
           width: "89%",
           display: "flex",
           justifyContent: "end",
@@ -87,8 +91,8 @@ function Navbar() {
             paddingRight: "5vh",
           }}
         >
-          <li style={{ cursor: "pointer" }} onClick={handleClickScroll}>
-            Online Terapi
+          <li style={{ cursor: "pointer" }} onClick={routeChange3}>
+            <li onClick={handleClickScroll}>Online Terapi</li>
           </li>
           <li style={{ cursor: "pointer" }} onClick={routeChange2}>
             Online Test
