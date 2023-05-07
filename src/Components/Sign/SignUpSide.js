@@ -5,10 +5,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
+import { Link } from "@mui/material";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -18,6 +16,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [tc, setTC] = useState("");
+  const [surname, setSurname] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(true);
 
   const handleEmailChange = (event) => {
@@ -28,11 +29,19 @@ function LoginPage() {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+  const handleTCChange = (event) => {
+    setTC(event.target.value);
+  };
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+  const handleSurnameChange = (event) => {
+    setSurname(event.target.value);
+  };
   let navigate = useNavigate();
   const routeChange = () => {
-    navigate("/home");
+    navigate("/");
   };
-
   const theme = createTheme();
 
   return (
@@ -75,7 +84,7 @@ function LoginPage() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h6">
-              Giriş
+              Üye Ol
             </Typography>
             <Box
               component="form"
@@ -83,6 +92,42 @@ function LoginPage() {
               sx={{ mt: 1 }}
               style={{ scale: "0.8" }}
             >
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="name"
+                label="İsim"
+                type="name"
+                id="name"
+                autoComplete="current-password"
+                value={name}
+                onChange={handleNameChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="surname"
+                label="Soy İsim"
+                type="surname"
+                id="surname"
+                autoComplete="current-password"
+                value={surname}
+                onChange={handleSurnameChange}
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="tc"
+                label="TC Kimlik Numarası"
+                type="tc"
+                id="tc"
+                autoComplete="current-password"
+                value={tc}
+                onChange={handleTCChange}
+              />
               <TextField
                 margin="normal"
                 required
@@ -121,10 +166,6 @@ function LoginPage() {
                 value={password}
                 onChange={handlePasswordChange}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Beni Hatırla"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -132,12 +173,12 @@ function LoginPage() {
                 sx={{ mt: 3, mb: 2 }}
                 onClick={routeChange}
               >
-                Giriş
+                Üye Ol
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link href="/uyeol" variant="body2">
-                    {"Hesabın Yok Mu?Üye Ol"}
+                  <Link href="/" variant="body2">
+                    {"Hesabın Var Mı?Giriş Yap"}
                   </Link>
                 </Grid>
               </Grid>
