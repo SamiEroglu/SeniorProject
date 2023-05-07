@@ -29,6 +29,7 @@ function LoginPage() {
     setPassword(event.target.value);
   };
   let navigate = useNavigate();
+
   const routeChange = () => {
     navigate("/home");
   };
