@@ -1,100 +1,100 @@
 .details input {
-	width: 17vw;
-	height: 1.4vw;
+  width: 17vw;
+  height: 1.4vw;
 }
 #preasonid {
-	width: 35vw;
-	height: 12vh;
-	font-family: sans-serif;
-	resize: none;
+  width: 35vw;
+  height: 12vh;
+  font-family: sans-serif;
+  resize: none;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 .backgroundImg {
-	width: 100%;
-	height: 80vh;
-	position: absolute;
-	left: 12.5%;
-	top: 100%;
-	scale: 1.5;
-	z-index: 3;
-	filter: blur(100px);
-	transform: scaleY(-1);
+  width: 100%;
+  height: 80vh;
+  position: absolute;
+  left: 12.5%;
+  top: 100%;
+  scale: 1.5;
+  z-index: 3;
+  filter: blur(100px);
+  transform: scaleY(-1);
 }
 .foregroundImg {
-	width: 100%;
-	height: 100vh;
-	position: relative;
-	z-index: 2;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
 }
 
 .sidemenutable tr {
-	color: #000;
-	position: relative;
-	text-decoration: none;
+  color: #000;
+  position: relative;
+  text-decoration: none;
 }
 
 .sidemenutable tr::before {
-	background: hsl(0, 0%, 90%);
-	content: "";
-	inset: 0;
-	position: absolute;
-	transform: scaleX(0);
-	transform-origin: right;
-	transition: transform 0.5s ease-in-out;
-	z-index: -1;
+  background: hsl(0, 0%, 90%);
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease-in-out;
+  z-index: -1;
 }
 
 .sidemenutable tr:hover::before {
-	transform: scaleX(1);
-	transform-origin: left;
+  transform: scaleX(1);
+  transform-origin: left;
 }
 .button-6 {
-	align-items: center;
-	background-color: #ffffff;
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	border-radius: 0.25rem;
-	box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-	box-sizing: border-box;
-	color: rgba(0, 0, 0, 0.85);
-	cursor: pointer;
-	display: inline-flex;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
 
-	font-size: 1vw;
-	font-weight: 550;
-	justify-content: center;
-	line-height: 1.25;
-	margin: 0;
-	min-height: 3rem;
-	padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
-	position: relative;
-	text-decoration: none;
-	transition: all 250ms;
-	user-select: none;
-	-webkit-user-select: none;
-	touch-action: manipulation;
-	vertical-align: baseline;
-	width: auto;
+  font-size: 1vw;
+  font-weight: 550;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
 }
 
 .button-6:hover,
 .button-6:focus {
-	border-color: rgba(0, 0, 0, 0.15);
-	box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-	color: rgba(0, 0, 0, 0.65);
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
 }
 
 .button-6:hover {
-	transform: translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .button-6:active {
-	background-color: #f0f0f1;
-	border-color: rgba(0, 0, 0, 0.15);
-	box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-	color: rgba(0, 0, 0, 0.65);
-	transform: translateY(0);
+  background-color: #f0f0f1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
 }
