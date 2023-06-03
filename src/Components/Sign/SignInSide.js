@@ -19,8 +19,6 @@ import axios from 'axios';
 function LoginPage() {
 	let navigate = useNavigate();
 
-	console.log(process.env.REACT_APP_DB_URL);
-
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [isValidEmail, setIsValidEmail] = useState(true);
@@ -37,7 +35,7 @@ function LoginPage() {
 	const login = async (e) => {
 		e.preventDefault();
 		await axios
-			.post(`${process.env.REACT_APP_DB_URL}/api/auth/local`, {
+			.post(`${process.env.REACT_APP_API_URL}/api/auth/local`, {
 				identifier: email,
 				password: password,
 			})
@@ -52,11 +50,51 @@ function LoginPage() {
 			});
 	};
 
+	const getRole = async () => {
+		const getUserQuery = {
+			query: `
+				query {
+				usersPermissionsUser(id: 2) {
+					data {
+					attributes {
+						role {
+						data {
+							attributes {
+							name
+							}
+						}
+						}
+					}
+					}
+				}
+			}
+			`,
+		};
+
+		await axios({
+			url: `${process.env.REACT_APP_API_URL}/graphql`,
+			method: 'POST',
+			data: getUserQuery,
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
+			},
+		}).then((res) => {
+			localStorage.setItem(
+				'role',
+				res.data.data.usersPermissionsUser.data.attributes.role.data.attributes
+					.name
+			);
+		});
+	};
+
+	getRole();
+
 	const theme = createTheme();
 
 	return (
 		<ThemeProvider theme={theme}>
-			<Grid container component='main' sx={{ height: '100vh' }}>
+			<Grid container component="main" sx={{ height: '100vh' }}>
 				<CssBaseline />
 				<Grid
 					item
@@ -93,25 +131,25 @@ function LoginPage() {
 						<Avatar sx={{ m: 0.5, bgcolor: 'secondary.main' }}>
 							<LockOutlinedIcon />
 						</Avatar>
-						<Typography component='h1' variant='h6'>
+						<Typography component="h1" variant="h6">
 							Giriş
 						</Typography>
 						<Box
-							component='form'
+							component="form"
 							noValidate
 							sx={{ mt: 1 }}
 							style={{ scale: '0.8' }}
 						>
 							<TextField
-								margin='normal'
+								margin="normal"
 								required
 								fullWidth
-								id='email'
-								label='Email Adresi'
-								name='email'
-								autoComplete='email'
+								id="email"
+								label="Email Adresi"
+								name="email"
+								autoComplete="email"
 								autoFocus
-								type='email'
+								type="email"
 								value={email}
 								onChange={handleEmailChange}
 							/>
@@ -129,25 +167,25 @@ function LoginPage() {
 								</div>
 							)}
 							<TextField
-								margin='normal'
+								margin="normal"
 								required
 								fullWidth
-								name='password'
-								label='Şifre'
-								type='password'
-								id='password'
-								autoComplete='current-password'
+								name="password"
+								label="Şifre"
+								type="password"
+								id="password"
+								autoComplete="current-password"
 								value={password}
 								onChange={handlePasswordChange}
 							/>
 							<FormControlLabel
-								control={<Checkbox value='remember' color='primary' />}
-								label='Beni Hatırla'
+								control={<Checkbox value="remember" color="primary" />}
+								label="Beni Hatırla"
 							/>
 							<Button
-								type='submit'
+								type="submit"
 								fullWidth
-								variant='contained'
+								variant="contained"
 								sx={{ mt: 3, mb: 2 }}
 								onClick={login}
 							>
@@ -155,7 +193,7 @@ function LoginPage() {
 							</Button>
 							<Grid container>
 								<Grid item>
-									<Link href='/uyeol' variant='body2'>
+									<Link href="/uyeol" variant="body2">
 										{'Hesabın Yok Mu?Üye Ol'}
 									</Link>
 								</Grid>
