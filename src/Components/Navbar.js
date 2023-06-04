@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const [isAdmin, setIsAdmin] = useState(false);
+
   const handleClickScroll = () => {
     const element = document.getElementById("section-1");
     if (element) {
@@ -14,6 +16,9 @@ function Navbar() {
       behavior: "smooth",
     });
   };
+  function adminstrator() {
+    setIsAdmin((isAdmin) => !isAdmin);
+  }
   let navigate = useNavigate();
   const routeChange1 = () => {
     navigate("/profile");
@@ -97,9 +102,11 @@ function Navbar() {
           <li style={{ cursor: "pointer" }} onClick={routeChange2}>
             Online Test
           </li>
-          <li style={{ cursor: "pointer" }} onClick={routeChange1}>
-            Danışan Bilgileri
-          </li>
+          {isAdmin && (
+            <li style={{ cursor: "pointer" }} onClick={routeChange1}>
+              Danışan Bilgileri
+            </li>
+          )}
         </ul>
       </div>
     </div>
