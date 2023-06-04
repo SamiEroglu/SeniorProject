@@ -17,7 +17,7 @@ function Profile() {
 	const [isOpenUsers, setIsOpenUsers] = useState(false);
 	const [clients, setClients] = useState([]);
 
-	// const [clickedClient, setClickedClient] = useState({});
+	const [clickedClient, setClickedClient] = useState({});
 
 	const handleNameChange = (e) => {
 		setName(e.target.value);
@@ -107,6 +107,10 @@ function Profile() {
 	}, []);
 
 	const clientsList = clients.map((client) => {
+		const handleClick = () => {
+			toggleUsers(client); // Pass the entire client object to the toggleUsers function
+		};
+
 		return (
 			<tr
 				style={{
@@ -119,7 +123,7 @@ function Profile() {
 					borderTop: 'solid 1px black',
 					borderBottom: 'solid 1px black',
 				}}
-				onClick={toggleUsers}
+				onClick={handleClick}
 			>
 				<td className="client" key={client.id}>
 					{client.attributes.user.data.attributes.username}
@@ -139,7 +143,23 @@ function Profile() {
 	function toggle() {
 		setIsOpen((isOpen) => !isOpen);
 	}
-	function toggleUsers() {
+	function toggleUsers(client) {
+		console.log(client);
+
+		const name = client.attributes.user.data.attributes.username.split(' ')[0];
+		const surname =
+			client.attributes.user.data.attributes.username.split(' ')[1];
+
+		setClickedClient({
+			name,
+			surname,
+			email: client.attributes.user.data.attributes.email,
+			gender: client.attributes.user.data.attributes.gender,
+			phone: client.attributes.user.data.attributes.phone,
+			tc: client.attributes.user.data.attributes.tc,
+			symptoms: client.attributes.user.data.attributes.symptoms,
+		});
+
 		setIsOpenUsers((isOpenUsers) => !isOpenUsers);
 	}
 
@@ -531,52 +551,49 @@ function Profile() {
 							<tr>
 								<td>İsim:</td>
 								<td>
-									<text type="text" name="name" value={name}></text>
+									<text type="text" name="name" value={name}>
+										{clickedClient.name}
+									</text>
 								</td>
 							</tr>
 							<tr>
 								<td>Soyisim:</td>
 								<td>
-									<text type="text" name="surname" value={surname}></text>
+									<text type="text" name="surname" value={surname}>
+										{clickedClient.surname}
+									</text>
 								</td>
 							</tr>
 							<tr>
 								<td>Mail:</td>
 								<td>
-									<text
-										type="mail"
-										name="email"
-										maxLength={'25'}
-										value={email}
-									></text>
+									<text type="mail" name="email" maxLength={'25'} value={email}>
+										{clickedClient.email}
+									</text>
 								</td>
 							</tr>
 							<tr>
 								<td>Cinsiyet:</td>
 								<td>
-									<text name="gender" value={gender}></text>
+									<text name="gender" value={gender}>
+										{clickedClient.gender}
+									</text>
 								</td>
 							</tr>
 							<tr>
 								<td>TC Kimlik Numarası:</td>
 								<td>
-									<text
-										type="text"
-										name="tc"
-										maxLength={'11'}
-										value={tc}
-									></text>
+									<text type="text" name="tc" maxLength={'11'} value={tc}>
+										{clickedClient.tc}
+									</text>
 								</td>
 							</tr>
 							<tr>
 								<td>Telefon Numarası:</td>
 								<td>
-									<text
-										type="text"
-										name="phone"
-										maxLength={'11'}
-										value={phone}
-									></text>
+									<text type="text" name="phone" maxLength={'11'} value={phone}>
+										{clickedClient.phone}
+									</text>
 								</td>
 							</tr>
 							<tr>
@@ -588,7 +605,9 @@ function Profile() {
 										classname="preasonid"
 										id="preasonid"
 										value={symptom}
-									></text>
+									>
+										{clickedClient.symptoms}
+									</text>
 								</td>
 							</tr>
 						</table>
