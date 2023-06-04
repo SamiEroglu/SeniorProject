@@ -1,12 +1,19 @@
 .details input {
   width: 17vw;
-  height: 1.4vw;
+  height: 2vh;
 }
 #preasonid {
   width: 35vw;
   height: 12vh;
   font-family: sans-serif;
   resize: none;
+}
+#preasonid1 {
+  width: 35vw;
+  height: 12vh;
+  font-family: sans-serif;
+  overflow-y: scroll;
+  font-size: 1vw;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -53,6 +60,9 @@ input::-webkit-inner-spin-button {
   transform-origin: left;
 }
 .sidemenutable td {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
   margin: 0.5vw;
 }
 .button-6 {
