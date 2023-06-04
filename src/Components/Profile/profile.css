@@ -9,6 +9,7 @@
   resize: none;
 }
 #preasonid1 {
+  overflow-wrap: break-word;
   width: 35vw;
   height: 12vh;
   font-family: sans-serif;

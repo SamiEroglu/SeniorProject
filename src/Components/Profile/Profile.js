@@ -611,7 +611,7 @@ function Profile() {
                   <div
                     type="text"
                     name="symptom"
-                    classname="preasonid"
+                    classname="preasonid1"
                     id="preasonid1"
                     value={symptom}
                   >
