@@ -32,16 +32,19 @@ function LoginPage() {
 		setPassword(event.target.value);
 	};
 
-	const login = async (e) => {
+	const login = (e) => {
 		e.preventDefault();
-		await axios
+		axios
 			.post(`${process.env.REACT_APP_API_URL}/api/auth/local`, {
 				identifier: email,
 				password: password,
 			})
-			.then((res) => {
+			.then(async (res) => {
 				localStorage.setItem('token', res.data.jwt);
-				navigate('/home');
+
+				await getUsersRole().then(() => {
+					navigate('/home');
+				});
 			})
 			.catch((err) => {
 				console.log(err);
@@ -50,11 +53,24 @@ function LoginPage() {
 			});
 	};
 
-	const getRole = async () => {
-		const getUserQuery = {
-			query: `
+	const getUsersRole = async () => {
+		let userId;
+		let role;
+
+		axios({
+			url: `${process.env.REACT_APP_API_URL}/api/users/me`,
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
+			},
+		}).then(async (res) => {
+			userId = res.data.id;
+
+			const getUserQuery = {
+				query: `
 				query {
-				usersPermissionsUser(id: 2) {
+				usersPermissionsUser(id: ${userId}) {
 					data {
 					attributes {
 						role {
@@ -69,26 +85,27 @@ function LoginPage() {
 				}
 			}
 			`,
-		};
+			};
 
-		await axios({
-			url: `${process.env.REACT_APP_API_URL}/graphql`,
-			method: 'POST',
-			data: getUserQuery,
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
-			},
-		}).then((res) => {
-			localStorage.setItem(
-				'role',
-				res.data.data.usersPermissionsUser.data.attributes.role.data.attributes
-					.name
-			);
+			axios({
+				url: `${process.env.REACT_APP_API_URL}/graphql`,
+				method: 'POST',
+				data: getUserQuery,
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
+				},
+			}).then((res) => {
+				role =
+					res.data.data.usersPermissionsUser.data.attributes.role.data
+						.attributes.name;
+
+				localStorage.setItem('role', role);
+			});
 		});
-	};
 
-	getRole();
+		return role;
+	};
 
 	const theme = createTheme();
 
