@@ -52,6 +52,9 @@ input::-webkit-inner-spin-button {
   transform: scaleX(1);
   transform-origin: left;
 }
+.sidemenutable td {
+  margin: 0.5vw;
+}
 .button-6 {
   align-items: center;
   background-color: #ffffff;
