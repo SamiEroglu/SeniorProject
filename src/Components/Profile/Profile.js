@@ -14,6 +14,8 @@ function Profile() {
 	const [symptom, setSymptom] = useState('');
 	const [phone, setPhone] = useState('');
 
+	const [clients, setClients] = useState([]);
+
 	const handleNameChange = (e) => {
 		setName(e.target.value);
 	};
@@ -48,6 +50,64 @@ function Profile() {
 
 		return () => URL.revokeObjectURL(objectUrl);
 	}, [selectedFile]);
+
+	useEffect(() => {
+		const fetchClients = async () => {
+			try {
+				let clientsResponse;
+
+				const getClientsQuery = {
+					query: `
+            query {
+              clients(filters: { consultant: { user: { username: { eq: "test" } } } }) {
+                data {
+                  id
+                  attributes {
+                    users_permissions_user {
+                      data {
+                        attributes {
+                          username
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          `,
+				};
+
+				axios({
+					url: `${process.env.REACT_APP_API_URL}/graphql`,
+					method: 'POST',
+					data: getClientsQuery,
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
+					},
+				}).then((res) => {
+					clientsResponse = res.data.data.clients.data;
+
+					setClients(clientsResponse);
+				});
+			} catch (error) {
+				console.error('Error:', error);
+			}
+		};
+
+		fetchClients();
+	}, []);
+
+	const clientsList = clients.map((client) => {
+		console.log(client);
+		return (
+			<tr className="client" key={client.id}>
+				<td>
+					{client.attributes.users_permissions_user.data.attributes.username}
+				</td>
+			</tr>
+		);
+	});
 
 	const onSelectFile = (e) => {
 		if (!e.target.files || e.target.files.length === 0) {
@@ -157,23 +217,45 @@ function Profile() {
 					}}
 				>
 					<div>
-						<table cellSpacing="10" className="sidemenutable">
-							<tr
-								onClick={toggle}
-								style={{
-									display: 'flex',
-									flexDirection: 'row',
-									fontSize: '1.5vw',
-									padding: '1vw',
-									alignItems: 'center',
-									justifyContent: 'space-around',
-									borderTop: 'solid 1px black',
-									borderBottom: 'solid 1px black',
-								}}
-							>
-								<img src="./ppicon.png" style={{ width: '20%' }} alt=""></img>
-								<td>Kayıt</td>
-							</tr>
+						<table
+							style={{ display: 'flex', flexDirection: 'column' }}
+							cellSpacing="10"
+							className="sidemenutable"
+						>
+							<td>
+								<tr
+									onClick={toggle}
+									style={{
+										display: 'flex',
+										flexDirection: 'row',
+										fontSize: '1.5vw',
+										padding: '1vw',
+										alignItems: 'center',
+										justifyContent: 'space-around',
+										borderTop: 'solid 1px black',
+										borderBottom: 'solid 1px black',
+									}}
+								>
+									<img src="./ppicon.png" style={{ width: '20%' }} alt=""></img>
+									<td>Kayıt</td>
+								</tr>
+							</td>
+							<td>
+								<tr
+									style={{
+										display: 'flex',
+										flexDirection: 'row',
+										fontSize: '1.5vw',
+										padding: '1vw',
+										alignItems: 'center',
+										justifyContent: 'space-around',
+										borderTop: 'solid 1px black',
+										borderBottom: 'solid 1px black',
+									}}
+								>
+									{clientsList}
+								</tr>
+							</td>
 						</table>
 					</div>
 				</div>
