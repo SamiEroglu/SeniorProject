@@ -35,9 +35,9 @@ function LoginPage() {
   const handleTCChange = (event) => {
     setTC(event.target.value);
   };
-  // const handleGenderChange = (e) => {
-  // 	setGender(e.target.value);
-  // };
+  const handleGenderChange = (e) => {
+    setGender(e.target.value);
+  };
   const handlePhoneChange = (e) => {
     setPhone(e.target.value);
   };
@@ -84,7 +84,7 @@ function LoginPage() {
           .then(async () => {
             console.log("user created and updated.");
 
-            let consultantUserId = 2;
+            let consultantUserId = 26;
 
             let consultantId;
 
@@ -214,6 +214,7 @@ function LoginPage() {
                 value={surname}
                 onChange={handleSurnameChange}
               />
+
               <TextField
                 margin="normal"
                 required
@@ -288,6 +289,26 @@ function LoginPage() {
                 value={password}
                 onChange={handlePasswordChange}
               />
+              <select
+                name="gender"
+                onChange={handleGenderChange}
+                value={gender}
+                style={{
+                  fontSize: "2vh",
+                  border: "none",
+                  borderRadius: ".5vw",
+                  width: "10vw",
+                  height: "5vh",
+                  textAlign: "center",
+                  fontFamily: "sans-serif",
+                  backgroundColor: "steelblue",
+                  color: "white",
+                }}
+              >
+                <option value="Male">Erkek</option>
+                <option value="Female">Kadın</option>
+                <option value="Other">Diğer</option>
+              </select>
               <Button
                 type="submit"
                 fullWidth

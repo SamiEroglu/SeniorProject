@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "../Profile/profile.css";
 import Navbar from "../Navbar";
 import axios from "axios";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 function Profile() {
   const [selectedFile, setSelectedFile] = useState();
@@ -16,8 +18,12 @@ function Profile() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenUsers, setIsOpenUsers] = useState(false);
   const [clients, setClients] = useState([]);
-
   const [clickedClient, setClickedClient] = useState({});
+  function editContent() {
+    var div = document.getElementById("preasonid1");
+    div.contentEditable = true;
+    div.focus();
+  }
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -62,7 +68,7 @@ function Profile() {
         const getClientsQuery = {
           query: `
             query {
-              clients(filters: { consultant: { user: { username: { eq: "test" } } } }) {
+              clients(filters: { consultant: { user: { username: { eq: "admin consultant" } } } }) {
                 data {
                   id
                   attributes {
@@ -110,6 +116,9 @@ function Profile() {
     const handleClick = () => {
       toggleUsers(client);
     };
+    // const handleClickDelete = () => {
+    //   removeUser(client.id);
+    // };
 
     return (
       <tr
@@ -267,7 +276,50 @@ function Profile() {
         console.log(err);
       });
   };
+  //   const removeUser = async (userId) => {
+  //     try {
+  //       await axios
+  //         .delete(`${process.env.REACT_APP_API_URL}/api/users/${userId}`, {
+  //           headers: {
+  //             Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
+  //           },
+  //         })
+  //         .then((res) => {
+  //           console.log("Kullanıcı kaldırıldı.", res);
+  //         })
+  //         .catch((e) => {
+  //           console.log(e);
+  //         });
 
+  //       // Kullanıcıyı silmekten sonra geri kalan kullanıcıları almak için başka bir API isteği yapabilirsiniz.
+  //       const response = await axios.get(
+  //         `${process.env.REACT_APP_API_URL}/api/users`,
+  //         {
+  //           headers: {
+  //             Authorization: `Bearer ${process.env.REACT_APP_API_TOKEN}`,
+  //           },
+  //         }
+  //       );
+  //       const remainingUsers = response.data;
+  //       console.log("Geri kalan kullanıcılar:", remainingUsers);
+  //     } catch (error) {
+  //       console.error("Kullanıcı kaldırma işlemi başarısız oldu.", error);
+  //     }
+  //   };
+  const submit = () => {
+    confirmAlert({
+      title: "Danışan Kaldırma İşlemi",
+      message: "Silmek istediğinize emin misiniz?",
+      buttons: [
+        {
+          label: "Evet",
+        },
+        {
+          label: "Hayır",
+        },
+      ],
+    });
+  };
   return (
     <div
       style={{
@@ -423,7 +475,17 @@ function Profile() {
                     name="gender"
                     onChange={handleGenderChange}
                     value={gender}
-                    style={{ fontSize: "2vh" }}
+                    style={{
+                      fontSize: "2vh",
+                      border: "solid 1px black",
+                      borderRadius: ".5vw",
+                      width: "6vw",
+                      height: "3vh",
+                      textAlign: "center",
+                      fontFamily: "sans-serif",
+                      backgroundColor: "white",
+                      color: "black",
+                    }}
                   >
                     <option value="Male">Erkek</option>
                     <option value="Female">Kadın</option>
@@ -614,9 +676,28 @@ function Profile() {
                     classname="preasonid1"
                     id="preasonid1"
                     value={symptom}
+                    onDoubleClick={editContent}
                   >
                     {clickedClient.symptoms}
                   </div>
+                </td>
+              </tr>
+              <tr style={{ position: "absolute", left: "80%", top: "100%" }}>
+                <td>
+                  <button
+                    type="submit"
+                    className="button-6"
+                    onClick={createUser}
+                  >
+                    Kaydet
+                  </button>
+                </td>
+              </tr>
+              <tr style={{ position: "absolute", left: "10%", top: "100%" }}>
+                <td>
+                  <button className="button-6" onClick={submit}>
+                    kaldır
+                  </button>
                 </td>
               </tr>
             </table>
