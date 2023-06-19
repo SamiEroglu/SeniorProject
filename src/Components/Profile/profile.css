@@ -16,6 +16,15 @@
   overflow-y: scroll;
   font-size: 1vw;
 }
+#taskresults {
+  width: 35vw;
+  height: 2vw;
+  font-family: sans-serif;
+  overflow-y: scroll;
+}
+.taskresults1 p {
+  font-size: 1.2vw;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
