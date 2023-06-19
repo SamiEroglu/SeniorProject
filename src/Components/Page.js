@@ -53,7 +53,7 @@ function Page() {
           }}
           onClick={handleClick}
         >
-          Daha Fazlası
+          Danışmana Bağlan
         </button>
       </div>
       <div ref={ref} id="section-1">
