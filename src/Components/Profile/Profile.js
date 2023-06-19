@@ -19,7 +19,19 @@ function Profile() {
 	const [isOpenUsers, setIsOpenUsers] = useState(false);
 	const [clients, setClients] = useState([]);
 	const [clickedClient, setClickedClient] = useState({});
-	const [isArrayPopulated, setIsArrayPopulated] = useState(false);
+
+	const RenderClientsResults = (client) => {
+		if (client.results !== null) {
+			return clickedClient.results.map((result, index) => (
+				<div key={index} className="my-class">
+					<p>{result.test}</p>
+					<p>{result.score}</p>
+				</div>
+			));
+		} else {
+			return <p>Henüz test sonucu yok.</p>;
+		}
+	};
 
 	function editContent() {
 		var div = document.getElementById('preasonid1');
@@ -176,10 +188,8 @@ function Profile() {
 			results:
 				client.attributes.results === null
 					? []
-					: JSON.stringify(client.attributes.results).replace(/\\/g, ''),
+					: JSON.parse(client.attributes.results),
 		});
-
-		setIsArrayPopulated(true);
 
 		setIsOpenUsers(true);
 		if (isOpen === true) {
@@ -685,13 +695,7 @@ function Profile() {
 										maxLength={'11'}
 										// value={results}
 									>
-										{isArrayPopulated &&
-											clickedClient.results.map((result, index) => (
-												<div key={index} className="my-class">
-													<p>{result.test}</p>
-													<p>{result.sonuc}</p>
-												</div>
-											))}
+										<RenderClientsResults client={clickedClient} />
 									</div>
 								</td>
 							</tr>
