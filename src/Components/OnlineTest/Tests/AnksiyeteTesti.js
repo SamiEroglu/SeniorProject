@@ -52,6 +52,7 @@ export default function AnksiyeteTesti() {
 			results.push({
 				test: 'Anksiyete Testi',
 				score: 21 - score,
+				date: new Date().toLocaleDateString(),
 			});
 
 			results = JSON.stringify(results).replace(/\\/g, '');

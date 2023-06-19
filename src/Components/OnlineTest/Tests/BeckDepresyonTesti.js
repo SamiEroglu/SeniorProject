@@ -52,6 +52,7 @@ export default function BeckDepresyonTesti() {
 			results.push({
 				test: 'Beck Depresyon Testi',
 				score: 21 - score,
+				date: new Date().toLocaleDateString(),
 			});
 
 			results = JSON.stringify(results).replace(/\\/g, '');
