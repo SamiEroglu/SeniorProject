@@ -1,10 +1,10 @@
 .chatboxcontainer {
-	opacity: 0.7;
-	transition: all 0.5s;
+  opacity: 0.7;
+  transition: all 0.5s;
 }
 .chatboxcontainer:hover {
-	opacity: 1;
-	transition: all 0.5s;
+  opacity: 1;
+  transition: all 0.5s;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

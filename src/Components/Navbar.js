@@ -154,7 +154,6 @@ function Navbar() {
           </li>
         </ul>
       </div>
-
       <div
         style={{
           backgroundColor: "#2c1444",
@@ -165,6 +164,19 @@ function Navbar() {
           textAlign: "center",
         }}
       >
+        <li
+          style={{
+            width: "50%",
+            display: "flex",
+            justifyContent: "start",
+            color: "white",
+            fontFamily: "sans-serif",
+            fontSize: "2.5vh",
+            listStyleType: "none",
+          }}
+        >
+          <li>{localStorage.getItem("username")}</li>
+        </li>
         <ul
           style={{
             display: "flex",
