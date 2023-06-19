@@ -57,6 +57,7 @@ function Navbar() {
 			},
 		}).then(async (res) => {
 			userId = res.data.id;
+			localStorage.setItem('userId', userId);
 
 			const getUserQuery = {
 				query: `
@@ -64,6 +65,7 @@ function Navbar() {
 				usersPermissionsUser(id: ${userId}) {
 					data {
 					attributes {
+						username
 						role {
 						data {
 							attributes {
@@ -90,13 +92,15 @@ function Navbar() {
 					res.data.data.usersPermissionsUser.data.attributes.role.data
 						.attributes.name;
 				localStorage.setItem('role', role);
+				localStorage.setItem(
+					'username',
+					res.data.data.usersPermissionsUser.data.attributes.username
+				);
 
 				if (role === 'Consultant') {
 					setisConsultant(true);
-					console.log(role);
 				} else if (role === 'Client') {
 					setisConsultant(false);
-					console.log(role);
 				}
 			});
 		});
