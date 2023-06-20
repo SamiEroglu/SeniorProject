@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import "../Styles/page.css";
 function Navbar() {
   const [isConsultant, setisConsultant] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState();
 
   useEffect(() => {
     const consultantCheck = async () => {
@@ -111,6 +113,15 @@ function Navbar() {
     return role;
   };
 
+  const logout = () => {
+    localStorage.removeItem("username");
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+  const handleShow = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
     <div
       style={{
@@ -168,6 +179,8 @@ function Navbar() {
           style={{
             width: "50%",
             display: "flex",
+            alignItems: "center",
+            cursor: "pointer",
             justifyContent: "start",
             color: "white",
             fontFamily: "sans-serif",
@@ -175,7 +188,80 @@ function Navbar() {
             listStyleType: "none",
           }}
         >
-          <li>{localStorage.getItem("username")}</li>
+          <div
+            onMouseEnter={() => setIsDropdownOpen(true)}
+            onMouseLeave={() => setIsDropdownOpen(false)}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <li>{localStorage.getItem("username")}</li>
+            {isDropdownOpen && (
+              <button
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "white",
+                  display: "flex",
+                  fontFamily: "sans-serif",
+                  fontSize: "2.5vh",
+                  marginLeft: "2vh",
+                }}
+                onClick={handleShow}
+              >
+                Çıkış Yap
+              </button>
+            )}
+          </div>
+          {isOpen && (
+            <div
+              style={{
+                position: "absolute",
+                top: "0",
+                left: "0",
+                width: "100%",
+                height: "100vh",
+                backgroundColor: "rgba(255,255,255,0.2)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <div
+                style={{
+                  zIndex: "3",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  border: "none",
+                  borderRadius: "1.5vw",
+                  width: "30%",
+                  height: "30vh",
+                  background: "white",
+                  boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+                  color: "black",
+                  fontFamily: "sans-serif",
+                  fontSize: "2vw",
+                  gap: "1vw",
+                }}
+              >
+                <div>Çıkış Yapmak İstediğinizden Emin Misiniz?</div>
+                <div
+                  style={{ display: "flex", flexDirection: "row", gap: "1vw" }}
+                >
+                  <button className="morebuttonstyle" onClick={logout}>
+                    Evet
+                  </button>
+                  <button className="morebuttonstyle" onClick={handleShow}>
+                    Hayır
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </li>
         <ul
           style={{
