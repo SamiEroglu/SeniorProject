@@ -60,8 +60,7 @@ function LoginPage() {
 					sm={4}
 					md={8}
 					sx={{
-						backgroundImage:
-							'url(https://source.unsplash.com/random/1920×1080/?city,night,1920x1080)',
+						backgroundImage: 'url(https://picsum.photos/1920/1080?landscape)',
 						backgroundRepeat: 'no-repeat',
 						backgroundSize: 'cover',
 						backgroundPosition: 'center',

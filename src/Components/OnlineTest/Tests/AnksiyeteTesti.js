@@ -116,10 +116,7 @@ export default function AnksiyeteTesti() {
 			}}
 		>
 			<Navbar />
-			<img
-				src="https://source.unsplash.com/random/1920x1080/?landscape"
-				alt=""
-			></img>
+			<img src="https://picsum.photos/1920/1080?landscape" alt=""></img>
 
 			<div className="testpage">
 				{showScore ? (
